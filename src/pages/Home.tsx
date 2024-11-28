@@ -1,10 +1,20 @@
 import { TYPE_COLORS, TYPE_TEXT_COLORS } from "../utils/pokemonTypeColors";
 import { usePokemonList } from "../hooks/usePokemonList";
 import { POKEMON_TYPE_TRANSLATIONS } from "../utils/pokemonTypeTranslations";
+import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
-  const { pokemons, isLoading, currentPage, totalPages, goToNextPage, goToPreviousPage, hasNextPage, hasPreviousPage } =
-    usePokemonList();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const { pokemons, isLoading, totalPages, hasNextPage, hasPreviousPage } = usePokemonList(currentPage);
+
+  const goToNextPage = () => {
+    setSearchParams({ page: (currentPage + 1).toString() });
+  };
+
+  const goToPreviousPage = () => {
+    setSearchParams({ page: (currentPage - 1).toString() });
+  };
 
   if (isLoading) {
     return (
