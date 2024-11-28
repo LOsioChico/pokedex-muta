@@ -5,7 +5,7 @@ import { Pokemon } from "../interfaces/Pokemon";
 export const usePokemonList = (currentPage: number = 1) => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [totalPages, setTotalPages] = useState(0);
   const [nextUrl, setNextUrl] = useState<string | null>(null);
   const [previousUrl, setPreviousUrl] = useState<string | null>(null);
@@ -19,7 +19,7 @@ export const usePokemonList = (currentPage: number = 1) => {
       setNextUrl(nextUrl);
       setPreviousUrl(previousUrl);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Ha ocurrido un error");
+      setError(err instanceof Error ? err : new Error("Ha ocurrido un error"));
     } finally {
       setIsLoading(false);
     }

@@ -2,6 +2,7 @@ import { TYPE_COLORS, TYPE_TEXT_COLORS } from "../utils/pokemonTypeColors";
 import { usePokemonList } from "../hooks/usePokemonList";
 import { POKEMON_TYPE_TRANSLATIONS } from "../utils/pokemonTypeTranslations";
 import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,8 +31,9 @@ const Home = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {pokemons.map((pokemon) => (
-          <div
+          <Link
             key={pokemon.id}
+            to={`/pokemon/${pokemon.id}`}
             className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <div className={`aspect-square relative bg-gradient-to-br ${TYPE_COLORS[pokemon.types[0]]} bg-opacity-40`}>
@@ -55,7 +57,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
