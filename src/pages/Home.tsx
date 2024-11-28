@@ -1,8 +1,10 @@
 import { TYPE_COLORS, TYPE_TEXT_COLORS } from "../utils/pokemonTypeColors";
 import { usePokemonList } from "../hooks/usePokemonList";
+import { POKEMON_TYPE_TRANSLATIONS } from "../utils/pokemonTypeTranslations";
 
 const Home = () => {
-  const { pokemons, isLoading } = usePokemonList();
+  const { pokemons, isLoading, currentPage, totalPages, goToNextPage, goToPreviousPage, hasNextPage, hasPreviousPage } =
+    usePokemonList();
 
   if (isLoading) {
     return (
@@ -38,13 +40,33 @@ const Home = () => {
                     key={type}
                     className={`px-3 py-1 rounded-full capitalize text-sm font-medium ${TYPE_COLORS[type]} ${TYPE_TEXT_COLORS[type]}`}
                   >
-                    {type}
+                    {POKEMON_TYPE_TRANSLATIONS[type]}
                   </span>
                 ))}
               </div>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-8 flex justify-center gap-2">
+        <button
+          onClick={goToPreviousPage}
+          disabled={!hasPreviousPage}
+          className="px-4 py-2 rounded-lg bg-gray-200 disabled:opacity-50 hover:bg-gray-300 transition-colors"
+        >
+          Anterior
+        </button>
+        <span className="px-4 py-2">
+          Página {currentPage} de {totalPages}
+        </span>
+        <button
+          onClick={goToNextPage}
+          disabled={!hasNextPage}
+          className="px-4 py-2 rounded-lg bg-gray-200 disabled:opacity-50 hover:bg-gray-300 transition-colors"
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );
