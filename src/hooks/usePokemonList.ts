@@ -19,7 +19,7 @@ export const usePokemonList = (currentPage: number = 1) => {
       setNextUrl(nextUrl);
       setPreviousUrl(previousUrl);
     } catch (err) {
-      setError(err instanceof Error ? err : new Error("Ha ocurrido un error"));
+      if (err instanceof Error) setError(err);
     } finally {
       setIsLoading(false);
     }
