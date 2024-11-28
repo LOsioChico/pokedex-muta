@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { usePokemonList } from "../hooks/usePokemonList";
 import { getPokemonList } from "../api/pokeApi";
@@ -35,12 +35,14 @@ describe("usePokemonList", () => {
     vi.clearAllMocks();
   });
 
-  it("should return initial loading state", () => {
+  it("should return initial loading state", async () => {
     const { result } = renderHook(() => usePokemonList(1));
 
-    expect(result.current.isLoading).toBe(true);
-    expect(result.current.pokemons).toEqual([]);
-    expect(result.current.error).toBe(null);
+    await act(async () => {
+      expect(result.current.isLoading).toBe(true);
+      expect(result.current.pokemons).toEqual([]);
+      expect(result.current.error).toBe(null);
+    });
   });
 
   it("should fetch and return pokemon list successfully", async () => {
@@ -59,7 +61,7 @@ describe("usePokemonList", () => {
     expect(result.current.hasPreviousPage).toBe(true);
   });
 
-  it("should handle API errors", async () => {
+  it("should handle API err ors", async () => {
     const error = new Error("Error al cargar la lista de Pokémon");
     vi.mocked(getPokemonList).mockRejectedValueOnce(error);
 
@@ -84,8 +86,10 @@ describe("usePokemonList", () => {
 
     rerender(2);
 
-    expect(result.current.isLoading).toBe(true);
-    expect(getPokemonList).toHaveBeenCalledWith(2);
+    await act(async () => {
+      expect(result.current.isLoading).toBe(true);
+      expect(getPokemonList).toHaveBeenCalledWith(2);
+    });
   });
 
   it("should correctly determine hasNextPage and hasPreviousPage", async () => {
