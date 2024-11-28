@@ -29,4 +29,6 @@ export type PokemonType =
 type Ability = {
   name: string;
   url: string;
+  nameEs?: string;
+  descriptionEs?: string;
 };

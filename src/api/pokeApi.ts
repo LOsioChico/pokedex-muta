@@ -14,7 +14,7 @@ export const pokeApi = axios.create({
 export const getPokemon = async (id: string): Promise<Pokemon> => {
   try {
     const { data } = await pokeApi.get(`/pokemon/${id}`);
-    return pokemonResponseMapper(data);
+    return pokemonResponseMapper(data, { includeAbilities: true });
   } catch {
     throw new Error("Error al cargar el Pokémon");
   }
@@ -26,7 +26,7 @@ export const getPokemonList = async (page: number = 1, limit: number = 20): Prom
 
   const pokemonPromises = pokemonList.results.map(async (pokemonData) => {
     const { data } = await pokeApi.get(pokemonData.url);
-    return pokemonResponseMapper(data);
+    return pokemonResponseMapper(data, { includeAbilities: false });
   });
 
   const pokemons = await Promise.all(pokemonPromises);

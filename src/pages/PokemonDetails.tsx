@@ -59,14 +59,12 @@ const PokemonDetails = () => {
 
             <div>
               <h2 className="text-xl font-semibold mb-2">Habilidades</h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col gap-2">
                 {pokemon.abilities.map((ability) => (
-                  <span
-                    key={ability.name}
-                    className="px-3 py-1 rounded-full capitalize text-sm font-medium bg-gray-100"
-                  >
-                    {ability.name}
-                  </span>
+                  <div key={ability.name} className="bg-gray-100 rounded-lg p-3">
+                    <h3 className="font-medium capitalize">{ability.nameEs || ability.name}</h3>
+                    {ability.descriptionEs && <p className="text-sm text-gray-600 mt-1">{ability.descriptionEs}</p>}
+                  </div>
                 ))}
               </div>
             </div>
