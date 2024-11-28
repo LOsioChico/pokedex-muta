@@ -4,9 +4,9 @@ import { Pokemon } from "../interfaces/Pokemon";
 export const pokemonResponseMapper = (response: any): Pokemon => {
   const officialArtwork = response.sprites.other["official-artwork"].front_default;
   const types = response.types.map((type: { type: { name: string } }) => type.type.name);
-  const stats = response.stats.map((stat: { stat: { name: string }; base_stat: number }) => ({
-    name: stat.stat.name,
-    value: stat.base_stat,
+  const abilities = response.abilities.map((ability: { ability: { name: string; url: string } }) => ({
+    name: ability.ability.name,
+    url: ability.ability.url,
   }));
 
   return {
@@ -14,8 +14,6 @@ export const pokemonResponseMapper = (response: any): Pokemon => {
     name: response.name,
     image: officialArtwork,
     types,
-    stats,
-    height: response.height,
-    weight: response.weight,
+    abilities,
   };
 };

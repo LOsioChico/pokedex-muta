@@ -3,9 +3,7 @@ export interface Pokemon {
   name: string;
   image: string;
   types: PokemonType[];
-  stats: Stat[];
-  height: number;
-  weight: number;
+  abilities: Ability[];
 }
 
 export type PokemonType =
@@ -28,7 +26,7 @@ export type PokemonType =
   | "steel"
   | "fairy";
 
-interface Stat {
+type Ability = {
   name: string;
-  value: number;
-}
+  url: string;
+};
