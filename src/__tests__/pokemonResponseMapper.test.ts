@@ -114,7 +114,6 @@ describe("pokemonResponseMapper", () => {
     const result = await pokemonResponseMapper(mockBasicResponse, { includeAbilities: true });
 
     expect(result).toBeNull();
-    expect(Array.isArray(result?.abilities)).toBe(false);
   });
 
   it("should handle malformed response data gracefully", async () => {
