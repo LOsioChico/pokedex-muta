@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 
-import { Home } from "../pages";
-import PokemonDetails from "../pages/PokemonDetails";
+import { Home, PokemonDetails } from "../pages";
 
 export const router = createBrowserRouter([
   {
