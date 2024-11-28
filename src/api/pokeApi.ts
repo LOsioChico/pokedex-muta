@@ -16,7 +16,7 @@ export const getPokemon = async (id: string): Promise<Pokemon> => {
     const { data } = await pokeApi.get(`/pokemon/${id}`);
     return pokemonResponseMapper(data);
   } catch {
-    throw new Error("Pokemon not found");
+    throw new Error("Error al cargar el Pokémon");
   }
 };
 
