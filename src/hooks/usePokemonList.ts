@@ -10,10 +10,10 @@ export const usePokemonList = (currentPage: number = 1) => {
   const [nextUrl, setNextUrl] = useState<string | null>(null);
   const [previousUrl, setPreviousUrl] = useState<string | null>(null);
 
-  const fetchPokemons = async (url?: string | null) => {
+  const fetchPokemons = async (currentPage: number) => {
     setIsLoading(true);
     try {
-      const { pokemons, totalPages, nextUrl, previousUrl } = await getPokemonList(url);
+      const { pokemons, totalPages, nextUrl, previousUrl } = await getPokemonList(currentPage);
       setPokemons(pokemons);
       setTotalPages(totalPages);
       setNextUrl(nextUrl);
@@ -26,25 +26,14 @@ export const usePokemonList = (currentPage: number = 1) => {
   };
 
   useEffect(() => {
-    fetchPokemons();
-  }, []);
-
-  const goToNextPage = () => {
-    if (nextUrl) fetchPokemons(nextUrl);
-  };
-
-  const goToPreviousPage = () => {
-    if (previousUrl) fetchPokemons(previousUrl);
-  };
+    fetchPokemons(currentPage);
+  }, [currentPage]);
 
   return {
     pokemons,
     isLoading,
     error,
-    currentPage,
     totalPages,
-    goToNextPage,
-    goToPreviousPage,
     hasNextPage: !!nextUrl,
     hasPreviousPage: !!previousUrl,
   };

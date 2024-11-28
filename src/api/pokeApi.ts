@@ -20,8 +20,8 @@ export const getPokemon = async (id: string): Promise<Pokemon> => {
   }
 };
 
-export const getPokemonList = async (url?: string | null, limit: number = 12): Promise<PaginatedPokemons> => {
-  const endpoint = url || `/pokemon?limit=${limit}`;
+export const getPokemonList = async (page: number = 1, limit: number = 20): Promise<PaginatedPokemons> => {
+  const endpoint = `/pokemon?limit=${limit}&offset=${(page - 1) * limit}`;
   const { data: pokemonList } = await pokeApi.get<PokemonListResponse>(endpoint);
 
   const pokemonPromises = pokemonList.results.map(async (pokemonData) => {
