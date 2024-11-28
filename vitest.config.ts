@@ -8,6 +8,9 @@ export default defineConfig({
     globals: true,
     environment: "happy-dom",
     css: true,
-    exclude: ["postcss.config.js", "tailwind.config.js", "node_modules", "dist"],
+    coverage: {
+      include: ["src/**/*.ts", "src/**/*.tsx"],
+      exclude: ["src/main.tsx", "**/*/index.{ts,tsx}", "**/*.d.ts"],
+    },
   },
 });
