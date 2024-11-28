@@ -1,0 +1,43 @@
+import { PokemonType } from "../interfaces/Pokemon";
+
+export const TYPE_COLORS: Record<PokemonType, string> = {
+  normal: "bg-gray-400",
+  fire: "bg-red-500",
+  water: "bg-blue-500",
+  electric: "bg-yellow-400",
+  grass: "bg-green-500",
+  ice: "bg-cyan-400",
+  fighting: "bg-red-700",
+  poison: "bg-purple-500",
+  ground: "bg-yellow-600",
+  flying: "bg-indigo-400",
+  psychic: "bg-pink-500",
+  bug: "bg-lime-500",
+  rock: "bg-yellow-800",
+  ghost: "bg-purple-700",
+  dragon: "bg-indigo-600",
+  dark: "bg-gray-700",
+  steel: "bg-gray-500",
+  fairy: "bg-pink-400",
+} as const;
+
+export const TYPE_TEXT_COLORS: Record<PokemonType, string> = {
+  normal: "text-white",
+  fire: "text-white",
+  water: "text-white",
+  electric: "text-gray-800",
+  grass: "text-white",
+  ice: "text-gray-800",
+  fighting: "text-white",
+  poison: "text-white",
+  ground: "text-white",
+  flying: "text-white",
+  psychic: "text-white",
+  bug: "text-white",
+  rock: "text-white",
+  ghost: "text-white",
+  dragon: "text-white",
+  dark: "text-white",
+  steel: "text-white",
+  fairy: "text-white",
+} as const;
