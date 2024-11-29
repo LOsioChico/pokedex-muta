@@ -18,7 +18,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => (
         src={pokemon.image}
         alt={pokemon.name}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-contain p-4"
+        className="absolute inset-0 w-full h-full object-contain p-4 hover:scale-110 transition-transform duration-300"
       />
     </div>
     <div className="p-4">
