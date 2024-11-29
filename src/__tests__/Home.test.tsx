@@ -180,4 +180,20 @@ describe("Home Component", () => {
       expect(screen.queryByText("ivysaur")).toBeNull();
     });
   });
+
+  it("handles API errors gracefully", async () => {
+    vi.mocked(getPokemonList).mockRejectedValueOnce(new Error("Error al cargar la lista de Pokémon"));
+
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Home />
+        </BrowserRouter>,
+      );
+    });
+
+    expect(screen.getByText("¡Ups! Algo salió mal")).toBeDefined();
+    expect(screen.getByText("Error al cargar la lista de Pokémon")).toBeDefined();
+    expect(screen.getByText("Volver al inicio")).toBeDefined();
+  });
 });

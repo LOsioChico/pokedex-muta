@@ -12,7 +12,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  const { pokemons, isLoading, totalPages, hasNextPage, hasPreviousPage } = usePokemonList(currentPage);
+  const { pokemons, isLoading, totalPages, hasNextPage, hasPreviousPage, error } = usePokemonList(currentPage);
 
   const filteredPokemons = useMemo(() => {
     if (!debouncedSearchTerm) return pokemons;
@@ -31,6 +31,20 @@ const Home = () => {
     return (
       <div className="min-h-screen flex items-center justify-center" data-testid="loading-spinner">
         <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-4">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">¡Ups! Algo salió mal</h2>
+          <p className="text-gray-600 mb-4">{error.message}</p>
+        </div>
+        <Link to="/" className="text-gray-500 hover:text-gray-700 transition-colors bg-gray-200 px-4 py-2 rounded-lg">
+          Volver al inicio
+        </Link>
       </div>
     );
   }
