@@ -111,9 +111,9 @@ describe("pokemonResponseMapper", () => {
   it("should handle API errors gracefully", async () => {
     vi.mocked(pokeApi.get).mockRejectedValueOnce(new Error("API Error"));
 
-    const result = await pokemonResponseMapper(mockBasicResponse, { includeAbilities: true });
-
-    expect(result).toBeNull();
+    await expect(pokemonResponseMapper(mockBasicResponse, { includeAbilities: true })).rejects.toThrow(
+      "Error al cargar el Pokémon",
+    );
   });
 
   it("should handle malformed response data gracefully", async () => {

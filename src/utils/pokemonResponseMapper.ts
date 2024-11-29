@@ -9,7 +9,7 @@ interface MapperOptions {
 export const pokemonResponseMapper = async (
   response: any,
   options: MapperOptions = { includeAbilities: false },
-): Promise<Pokemon | null> => {
+): Promise<Pokemon> => {
   try {
     const officialArtwork = response?.sprites?.other["official-artwork"]?.front_default;
     const types = response?.types?.map((type: { type: { name: string } }) => type.type.name);
@@ -46,6 +46,6 @@ export const pokemonResponseMapper = async (
       abilities,
     };
   } catch {
-    return null;
+    throw new Error("Error al cargar el Pokémon");
   }
 };
