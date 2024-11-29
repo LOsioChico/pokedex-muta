@@ -44,6 +44,11 @@ El proyecto incluye una cobertura de pruebas completa para:
 - Manejo de errores
 - Funcionalidad de búsqueda
 - Paginación
+- Navegación entre Pokémon
+
+[Ver pruebas](src/__tests__)
+
+![Coverage](coverage.png)
 
 ## Manejo de errores
 
