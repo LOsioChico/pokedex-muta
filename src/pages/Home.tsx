@@ -80,6 +80,7 @@ const Home = () => {
               <img
                 src={pokemon.image}
                 alt={pokemon.name}
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-contain p-4"
               />
             </div>
