@@ -3,7 +3,7 @@ export interface Pokemon {
   name: string;
   image: string;
   types: PokemonType[];
-  abilities: Ability[];
+  abilities: PokemonAbility[];
 }
 
 export type PokemonType =
@@ -26,7 +26,7 @@ export type PokemonType =
   | "steel"
   | "fairy";
 
-type Ability = {
+export type PokemonAbility = {
   name: string;
   url: string;
   nameEs?: string;
