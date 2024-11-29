@@ -71,6 +71,22 @@ describe("PokemonDetails", () => {
     expect(screen.getByText("Volver al inicio")).toBeDefined();
   });
 
+  it("shows error state on pokemon not found", () => {
+    vi.mocked(usePokemon).mockReturnValue({
+      pokemon: null,
+      isLoading: false,
+      error: null,
+    });
+
+    render(
+      <BrowserRouter>
+        <PokemonDetails />
+      </BrowserRouter>,
+    );
+
+    expect(screen.getByText("Pokémon no encontrado")).toBeDefined();
+  });
+
   it("renders pokemon details successfully", () => {
     vi.mocked(usePokemon).mockReturnValue({
       pokemon: mockPokemon,
