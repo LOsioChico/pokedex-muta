@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BackButton } from "./BackButton";
 
 interface PokemonNavigationProps {
   currentId: number;
 }
 
-export const PokemonNavigation = ({ currentId }: PokemonNavigationProps) => {
+export const PokemonNavigation = React.memo(({ currentId }: PokemonNavigationProps) => {
   const navigate = useNavigate();
   const prevId = currentId > 1 ? currentId - 1 : null;
   const nextId = currentId < 1025 ? currentId + 1 : null; // 1025 is the total number of pokemons
@@ -53,4 +53,4 @@ export const PokemonNavigation = ({ currentId }: PokemonNavigationProps) => {
       )}
     </div>
   );
-};
+});

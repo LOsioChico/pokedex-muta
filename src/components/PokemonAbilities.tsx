@@ -1,10 +1,11 @@
+import React from "react";
 import { PokemonAbility } from "../interfaces/Pokemon";
 
 interface PokemonAbilitiesProps {
   abilities: PokemonAbility[];
 }
 
-export const PokemonAbilities = ({ abilities }: PokemonAbilitiesProps) => (
+export const PokemonAbilities = React.memo(({ abilities }: PokemonAbilitiesProps) => (
   <div>
     <h2 className="text-xl font-semibold mb-2">Habilidades</h2>
     <div className="flex flex-col gap-2">
@@ -16,4 +17,4 @@ export const PokemonAbilities = ({ abilities }: PokemonAbilitiesProps) => (
       ))}
     </div>
   </div>
-);
+));

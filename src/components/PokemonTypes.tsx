@@ -1,3 +1,4 @@
+import React from "react";
 import { PokemonType } from "../interfaces/Pokemon";
 import { TYPE_COLORS, TYPE_TEXT_COLORS } from "../utils/pokemonTypeColors";
 import { POKEMON_TYPE_TRANSLATIONS } from "../utils/pokemonTypeTranslations";
@@ -6,7 +7,7 @@ interface PokemonTypesProps {
   types: PokemonType[];
 }
 
-export const PokemonTypes = ({ types }: PokemonTypesProps) => (
+export const PokemonTypes = React.memo(({ types }: PokemonTypesProps) => (
   <div>
     <h2 className="text-xl font-semibold mb-2">Tipos</h2>
     <div className="flex flex-wrap gap-2">
@@ -20,4 +21,4 @@ export const PokemonTypes = ({ types }: PokemonTypesProps) => (
       ))}
     </div>
   </div>
-);
+));
