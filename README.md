@@ -10,6 +10,7 @@ Una aplicación React que muestra una lista de Pokémon utilizando la PokeAPI, p
 - Diseño responsivo para móviles y escritorio
 - Soporte para el idioma español
 - Manejo de errores y estados de carga
+- Navegación entre Pokémon utilizando las teclas de flecha izquierda y derecha
 
 ## Tecnologías utilizadas
 

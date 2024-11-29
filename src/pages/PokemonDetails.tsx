@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { usePokemon } from "../hooks/usePokemon";
 import { TYPE_COLORS } from "../utils/pokemonTypeColors";
-import { LoadingSpinner, ErrorState, BackButton, PokemonTypes, PokemonAbilities } from "../components";
+import { LoadingSpinner, ErrorState, PokemonTypes, PokemonAbilities, PokemonNavigation } from "../components";
 
 const PokemonDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,11 +12,15 @@ const PokemonDetails = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <BackButton label="← Volver al listado" />
+      <PokemonNavigation currentId={pokemon.id} />
 
       <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-2xl mx-auto">
         <div className={`aspect-video relative bg-gradient-to-br ${TYPE_COLORS[pokemon.types[0]]} bg-opacity-40`}>
-          <img src={pokemon.image} alt={pokemon.name} className="absolute inset-0 w-full h-full object-contain p-8" />
+          <img
+            src={pokemon.image}
+            alt={pokemon.name}
+            className="absolute inset-0 w-full h-full object-contain p-8 hover:scale-110 transition-transform duration-300"
+          />
         </div>
 
         <div className="p-6">

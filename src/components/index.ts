@@ -6,3 +6,4 @@ export * from "./LoadingSpinner";
 export * from "./PokemonTypes";
 export * from "./PokemonAbilities";
 export * from "./BackButton";
+export * from "./PokemonNavigation";
