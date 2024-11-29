@@ -1,50 +1,61 @@
-# React + TypeScript + Vite
+# Pokédex - Muta Prueba Técnica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación React que muestra una lista de Pokémon utilizando la PokeAPI, permitiendo a los usuarios buscar y ver información detallada sobre cada Pokémon.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Mostrar una lista paginada de Pokémon
+- Buscar Pokémon por nombre
+- Ver información detallada sobre cada Pokémon
+- Diseño responsivo para móviles y escritorio
+- Soporte para el idioma español
+- Manejo de errores y estados de carga
 
-## Expanding the ESLint configuration
+## Tecnologías utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Tailwind CSS
+- Axios para las solicitudes a la API
+- ESLint y Prettier para el linting y formateo del código
+- Vitest para las pruebas
+- React Router DOM para la navegación
+- Yarn como manejador de paquetes
+- Vite como empaquetador
 
-- Configure the top-level `parserOptions` property like this:
+## Estructura del proyecto
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- `/src/api` - Integración con la PokeAPI
+- `/src/components` - Componentes React
+- `/src/hooks` - Custom React hooks para la obtención de datos y el manejo de estados
+- `/src/interfaces` - TypeScript interfaces
+- `/src/pages` - Componentes de página (Home y PokemonDetails)
+- `/src/utils` - Funciones y constantes utilitarias
+- `/src/router` - Configuración de rutas
+- `/src/__tests__` - Archivos de prueba
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Pruebas
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+El proyecto incluye una cobertura de pruebas completa para:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Renderizado de componentes
+- Integración con la API
+- Manejo de errores
+- Funcionalidad de búsqueda
+- Paginación
+
+## Manejo de errores
+
+La aplicación implementa el manejo de errores para:
+
+- Solicitudes a la API fallidas
+- IDs de Pokémon inválidos
+- Búsqueda sin resultados
+
+## Integración con la API
+
+Utiliza la PokeAPI (https://pokeapi.co/api/v2) para obtener:
+
+- Lista paginada de Pokémon
+- Detalles individuales de Pokémon
+- Habilidades y tipos de Pokémon
