@@ -95,7 +95,7 @@ describe("PokemonDetails", () => {
     expect(screen.getByText("Espesura")).toBeDefined();
     expect(screen.getByText("Aumenta los movimientos tipo planta en un apuro.")).toBeDefined();
 
-    expect(screen.getByText("← Volver al listado")).toBeDefined();
+    expect(screen.getByText("Volver al listado")).toBeDefined();
   });
 
   it("uses correct pokemon id from URL params", () => {
