@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { Pokemon } from "../interfaces/Pokemon";
 import { TYPE_COLORS, TYPE_TEXT_COLORS } from "../utils/pokemonTypeColors";
@@ -7,7 +8,7 @@ interface PokemonCardProps {
   pokemon: Pokemon;
 }
 
-export const PokemonCard = ({ pokemon }: PokemonCardProps) => (
+export const PokemonCard = React.memo(({ pokemon }: PokemonCardProps) => (
   <Link
     key={pokemon.id}
     to={`/pokemon/${pokemon.id}`}
@@ -36,4 +37,4 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => (
       </div>
     </div>
   </Link>
-);
+));
