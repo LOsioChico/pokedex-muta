@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
-import { getPokemonList } from "../api/pokeApi";
-import { PaginatedPokemons } from "../interfaces/PaginatedPokemons";
+import Home from "../Home";
+import { getPokemonList } from "../../api/pokeApi";
+import { PaginatedPokemons } from "../../interfaces/PaginatedPokemons";
 
-vi.mock("../api/pokeApi");
+vi.mock("../../api/pokeApi");
 const mockPokemons: PaginatedPokemons = {
   pokemons: [
     {

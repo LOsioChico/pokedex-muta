@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter, useNavigate } from "react-router-dom";
-import { PokemonNavigation } from "../components/PokemonNavigation";
+import { PokemonNavigation } from "../PokemonNavigation";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");

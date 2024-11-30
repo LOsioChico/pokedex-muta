@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, useParams } from "react-router-dom";
-import PokemonDetails from "../pages/PokemonDetails";
-import { usePokemon } from "../hooks/usePokemon";
-import { Pokemon } from "../interfaces/Pokemon";
+import PokemonDetails from "../PokemonDetails";
+import { usePokemon } from "../../hooks/usePokemon";
+import { Pokemon } from "../../interfaces/Pokemon";
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
@@ -13,7 +13,7 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-vi.mock("../hooks/usePokemon", () => ({
+vi.mock("../../hooks/usePokemon", () => ({
   usePokemon: vi.fn(),
 }));
 

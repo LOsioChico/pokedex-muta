@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
-import { pokemonResponseMapper } from "../utils/pokemonResponseMapper";
-import { pokeApi } from "../api/pokeApi";
+import { pokemonResponseMapper } from "../../utils/pokemonResponseMapper";
+import { pokeApi } from "../../api/pokeApi";
 
-vi.mock("../api/pokeApi", () => ({
+vi.mock("../../api/pokeApi", () => ({
   pokeApi: {
     get: vi.fn(),
   },

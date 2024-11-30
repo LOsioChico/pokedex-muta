@@ -1,10 +1,10 @@
 import { renderHook, waitFor, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { usePokemonList } from "../hooks/usePokemonList";
-import { getPokemonList } from "../api/pokeApi";
-import { PaginatedPokemons } from "../interfaces/PaginatedPokemons";
+import { usePokemonList } from "../../hooks/usePokemonList";
+import { getPokemonList } from "../../api/pokeApi";
+import { PaginatedPokemons } from "../../interfaces/PaginatedPokemons";
 
-vi.mock("../api/pokeApi", () => ({
+vi.mock("../../api/pokeApi", () => ({
   getPokemonList: vi.fn(),
 }));
 

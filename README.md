@@ -33,7 +33,6 @@ Una aplicación React que muestra una lista de Pokémon utilizando la PokeAPI, p
 - `/src/pages` - Componentes de página (Home y PokemonDetails)
 - `/src/utils` - Funciones y constantes utilitarias
 - `/src/router` - Configuración de rutas
-- `/src/__tests__` - Archivos de prueba
 
 ## Pruebas
 
@@ -45,8 +44,6 @@ El proyecto incluye una cobertura de pruebas completa para:
 - Funcionalidad de búsqueda
 - Paginación
 - Navegación entre Pokémon
-
-[Ver pruebas](src/__tests__)
 
 ![Coverage](coverage.png)
 
