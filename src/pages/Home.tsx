@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 import { usePokemonList } from "../hooks/usePokemonList";
+import { useSearchPokemon } from "../hooks/useSearchPokemon";
 import { PokemonCard, SearchBar, Pagination, ErrorState, LoadingSpinner } from "../components";
 
 const Home = () => {
@@ -11,21 +12,15 @@ const Home = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const { pokemons, isLoading, totalPages, hasNextPage, hasPreviousPage, error } = usePokemonList(currentPage);
+  const { filteredPokemons, isSearching } = useSearchPokemon({
+    pokemons,
+    searchTerm: debouncedSearchTerm,
+  });
 
-  const filteredPokemons = useMemo(() => {
-    if (!debouncedSearchTerm) return pokemons;
-    return pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()));
-  }, [pokemons, debouncedSearchTerm]);
-
-  const goToNextPage = () => {
-    setSearchParams({ page: (currentPage + 1).toString() });
+  const handlePageChange = (newPage: number) => {
+    setSearchParams({ page: newPage.toString() });
   };
 
-  const goToPreviousPage = () => {
-    setSearchParams({ page: (currentPage - 1).toString() });
-  };
-
-  if (isLoading) return <LoadingSpinner />;
   if (error) return <ErrorState message={error.message} />;
 
   return (
@@ -40,11 +35,15 @@ const Home = () => {
         </p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredPokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </div>
+      {isLoading || isSearching ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filteredPokemons.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </div>
+      )}
 
       {!debouncedSearchTerm && (
         <Pagination
@@ -52,8 +51,8 @@ const Home = () => {
           totalPages={totalPages}
           hasNextPage={hasNextPage}
           hasPreviousPage={hasPreviousPage}
-          onNextPage={goToNextPage}
-          onPreviousPage={goToPreviousPage}
+          onNextPage={() => handlePageChange(currentPage + 1)}
+          onPreviousPage={() => handlePageChange(currentPage - 1)}
         />
       )}
     </div>
