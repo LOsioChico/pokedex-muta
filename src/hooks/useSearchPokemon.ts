@@ -26,7 +26,6 @@ export const useSearchPokemon = ({ pokemons, searchTerm }: UseSearchPokemonProps
   }, [pokemons, searchTerm, searchResults]);
 
   const searchPokemon = useCallback(async () => {
-    if (!searchTerm) return;
     setIsSearching(true);
     try {
       const result = await getPokemon(searchTerm);
