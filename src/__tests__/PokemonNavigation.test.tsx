@@ -45,12 +45,12 @@ describe("PokemonNavigation", () => {
   it("hides next button for last pokemon", () => {
     render(
       <BrowserRouter>
-        <PokemonNavigation currentId={1025} />
+        <PokemonNavigation currentId={10277} />
       </BrowserRouter>,
     );
 
-    expect(screen.getByText("← #1024")).toBeDefined();
-    expect(screen.queryByText(/#1026 →/)).toBeNull();
+    expect(screen.getByText("← #10276")).toBeDefined();
+    expect(screen.queryByText(/#10278 →/)).toBeNull();
   });
 
   it("navigates to previous pokemon on left arrow key press", () => {
@@ -89,7 +89,7 @@ describe("PokemonNavigation", () => {
   it("does not navigate on right arrow key press when at last pokemon", () => {
     render(
       <BrowserRouter>
-        <PokemonNavigation currentId={1025} />
+        <PokemonNavigation currentId={10277} />
       </BrowserRouter>,
     );
 

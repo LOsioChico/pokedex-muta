@@ -9,7 +9,13 @@ interface PokemonNavigationProps {
 export const PokemonNavigation = React.memo(({ currentId }: PokemonNavigationProps) => {
   const navigate = useNavigate();
   const prevId = currentId > 1 ? currentId - 1 : null;
-  const nextId = currentId < 1025 ? currentId + 1 : null; // 1025 is the total number of pokemons
+  const nextId = (() => {
+    // 1025 is the total number of pokemons but then starts from 10001 to 10277
+    if (currentId < 1025) return currentId + 1;
+    if (currentId === 1025) return 10001;
+    if (currentId >= 10001 && currentId < 10277) return currentId + 1;
+    return null;
+  })();
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
